@@ -10,11 +10,18 @@ const Index = () =>{
 			setTasks(data)
 		})
 	}, [])
+	const handleDelete = (taskId) => {
+		setTasks(prevTasks => prevTasks.filter(task => task._id !== taskId));
+	};
+	const handleAdition = (task) => {
+		setTasks(prevTasks => [...prevTasks, task])
+	}
+
 	return (
 		<>
-			<TaskForm/>
+			<TaskForm onAdd={handleAdition}/>
 			{
-				tasks.map(task=>(<TaskCard task={task} key={task._id}/>))
+				tasks.map(task=>(<TaskCard task={task} key={task._id} onDelete={handleDelete}/>))
 			}
 			
 		</>

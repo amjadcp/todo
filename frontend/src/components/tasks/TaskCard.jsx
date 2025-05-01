@@ -1,6 +1,6 @@
 import {toggelTaskStatus, deleteTask} from "../../services/tasks.js"
 
-const TaskCard =({task})=>{
+const TaskCard =({task, onDelete})=>{
 	const toggleStatus =(taskId)=>{
 		toggelTaskStatus(taskId).then(()=>{
 			alert("Something here")
@@ -11,6 +11,7 @@ const TaskCard =({task})=>{
 		e.preventDefault()
 		deleteTask(taskId).then(()=>{
 			alert("Task deleted")
+			onDelete(taskId)
 		}).catch(()=>alert("Something went wrong!"))
 	}
 
